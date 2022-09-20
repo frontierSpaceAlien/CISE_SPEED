@@ -5,12 +5,12 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cd .. && cd frontend && npm run build",
-    "install-client": "cd .. && cd frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "install-client": "cd frontend && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
-    "start": "node server.js",
-    "client": "cd .. && cd frontend && npm start",
-    "app": "nodemon server.js"
+    "start": "node backend/server.js",
+    "client": "cd frontend && npm start",
+    "app": "nodemon backend/server.js"
   },
   "author": "",
   "license": "ISC",

@@ -3,17 +3,18 @@ const app = express();
 const connectDB = require("../backend/db");
 const cors = require("cors");
 
-// connect database
-connectDB();
+// cors
+app.use(cors());
 
 // Init Middleware
-app.use(express.json({ extended: false }));
+app.use(express.json());
+
+// connect database
+connectDB();
 
 // routes
 app.use("/", require("./routes/articleRoute"));
 
-// cors
-app.use(cors({ origin: true, credentials: true }));
 
 if (process.env.NODE_ENV === 'production'){
     app.use(express.static('frontend/build'));

@@ -9,18 +9,12 @@ const articleSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    journalName: {
+    source: {
         type: String,
         required: true
     },
-    yearOfPub: {
+    publishedYear: {
         type: Date
-    },
-    volume: {
-        type: Number
-    },
-    pages: {
-        type: Number
     },
     doi: {
         type: String,

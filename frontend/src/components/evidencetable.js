@@ -3,7 +3,7 @@ import React from "react";
 import { useTable, useSortBy, usePagination } from 'react-table';
 
 const Table = ({columns, data}) => {
-const {
+const{ 
     getTableProps,
     getTableBodyProps,
     headerGroups,

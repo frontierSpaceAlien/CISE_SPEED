@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Styles from "../components/tablestyle.js";
-import Table from "../components/evidencetable.js";
-import tablecolumns from "../components/tablecolumns.js";
+import Table from "../components/moderatorTable.js";
+import tablecolumns from "../components/tablecolumnsModerator.js";
 import Dropdown from "../components/Dropdown.js";
 
 const ModerateArticles = () => {
@@ -12,6 +12,9 @@ const ModerateArticles = () => {
         pubyear: "",
         doi: "",
     }])
+
+    const [selectedRows, setSelectedRows] = useState([]);
+
     
     useEffect(() => {
         fetch("https://speedgroup3-53.herokuapp.com/ModerateArticles").then(res => res.json())
@@ -29,8 +32,26 @@ const ModerateArticles = () => {
           <Table
             data={articles}
             columns={tablecolumns}
+            setSelectedRows={setSelectedRows}
           />
-        </Styles> 
+        </Styles>
+        <pre>
+        <code>
+          {JSON.stringify(
+            {
+              selectedRows
+            },
+            null,
+            2
+          )}
+        </code>
+      </pre>
+            <button type="button">
+                Accept
+            </button> 
+            <button type="button">
+                Deny
+            </button> 
       </div>
     );
 }

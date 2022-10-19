@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import Styles from "../components/tablestyle.js";
 import Table from "../components/moderatorTable.js";
 import tablecolumns from "../components/tablecolumnsModerator.js";
@@ -15,14 +15,23 @@ const ModerateArticles = () => {
 
     const [selectedRows, setSelectedRows] = useState([]);
 
-    
+    var check = useRef(false);    
+
     useEffect(() => {
         fetch("https://speedgroup3-53.herokuapp.com/ModerateArticles").then(res => res.json())
         .then(jsonRes => setArticles(jsonRes))
         .catch(function(error){
             console.log(error)
         })
+
+        if(selectedRows.length === 0){
+            check.current = true
+        }else{
+            check.current = false
+        }
     })
+
+
 
     return (
       <div>
@@ -36,20 +45,27 @@ const ModerateArticles = () => {
           />
         </Styles>
         <pre>
-        <code>
-          {JSON.stringify(
-            {
-              selectedRows
-            },
-            null,
-            2
-          )}
-        </code>
-      </pre>
-            <button type="button">
+            <code>
+            {JSON.stringify(
+                {
+                selectedRows
+                },
+                null,
+                2
+                
+            )}
+            </code>
+        </pre>
+            <button 
+            type="button" 
+            disabled = {check.current}
+            >
                 Accept
             </button> 
-            <button type="button">
+            <button 
+            type="button" 
+            disabled = {check.current}
+            >
                 Deny
             </button> 
       </div>

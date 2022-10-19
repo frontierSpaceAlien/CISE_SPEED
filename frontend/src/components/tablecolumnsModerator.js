@@ -14,9 +14,6 @@ const tablecolumns = [
     },{
       Header: 'DOI',
       accessor: 'doi'
-    },{
-      Header: 'Pass/Deny',
-      accessor: 'pass/deny'
     }
   ]
 

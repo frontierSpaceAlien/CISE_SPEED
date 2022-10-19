@@ -21,10 +21,18 @@ const ModerateArticles = () => {
         doi: "",
     }])
 
+    const [state, setState] = useState([])
+
     const [selectedRows, setSelectedRows] = useState([]);
 
     const handleClick = () =>{
-        console.log(JSON.parse(selectedRows))
+        // console.log(JSON.stringify(selectedRows))
+        setState(JSON.stringify(selectedRows))
+        console.log(state)
+        const savedArticle={
+            title: state.title
+        }
+        console.log(savedArticle)
     }
 
     var check = useRef(false);    

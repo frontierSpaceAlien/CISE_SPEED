@@ -34,7 +34,7 @@ const SubmissionForm = () => {
       doi: result.doi
     }
 
-    axios.post('http://localhost:5000/SubmitArticle', newArticle)
+    axios.post('https://speedgroup3-53.herokuapp.com/SubmitArticle', newArticle)
   }  
   return (
       

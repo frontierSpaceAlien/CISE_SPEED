@@ -13,7 +13,19 @@ const ModerateArticles = () => {
         doi: "",
     }])
 
+    const [selectedArticle, setSelectedArticles] = useState([{
+        title: "",
+        authors: "",
+        source: "",
+        pubyear: "",
+        doi: "",
+    }])
+
     const [selectedRows, setSelectedRows] = useState([]);
+
+    const handleClick = () =>{
+        console.log(JSON.parse(selectedRows))
+    }
 
     var check = useRef(false);    
 
@@ -31,8 +43,6 @@ const ModerateArticles = () => {
         }
     })
 
-
-
     return (
       <div>
         <h2>Moderate Articles</h2>
@@ -44,18 +54,7 @@ const ModerateArticles = () => {
             setSelectedRows={setSelectedRows}
           />
         </Styles>
-        <pre>
-            <code>
-            {JSON.stringify(
-                {
-                selectedRows
-                },
-                null,
-                2
-                
-            )}
-            </code>
-        </pre>
+        <p>{JSON.stringify(selectedRows)}</p>
             <button 
             type="button" 
             disabled = {check.current}
@@ -65,6 +64,7 @@ const ModerateArticles = () => {
             <button 
             type="button" 
             disabled = {check.current}
+            onClick = {handleClick}
             >
                 Deny
             </button> 

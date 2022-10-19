@@ -13,8 +13,8 @@ const articleSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    publishedYear: {
-        type: Date
+    pubyear: {
+        type: String
     },
     doi: {
         type: String,

@@ -9,7 +9,7 @@ const SubmissionForm = () => {
     title: '',
     authors:'',
     source:'',
-    publishedYear:'',
+    pubyear:'',
     doi:''
   });
   
@@ -30,7 +30,7 @@ const SubmissionForm = () => {
       title: result.title,
       authors: result.authors,
       source: result.source,
-      publishedYear: result.publishedYear,
+      pubyear: result.pubyear,
       doi: result.doi
     }
 
@@ -43,7 +43,7 @@ const SubmissionForm = () => {
       <input name = "title" placeholder="Title" onChange={onChange}/>
       <p><input name = "authors" placeholder="Authors" onChange={onChange}/></p>
       <p><input name = "source" placeholder="Source" onChange={onChange} /></p> 
-      <p><input name = "publishedYear" placeholder="Publication Year" onChange={onChange}/></p>
+      <p><input name = "pubyear" placeholder="Publication Year" onChange={onChange}/></p>
       <p><input name = "doi" placeholder="DOI" onChange={onChange}/></p>
      
       <select {...register("sepractice")}>

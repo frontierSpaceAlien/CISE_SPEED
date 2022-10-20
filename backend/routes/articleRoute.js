@@ -45,8 +45,14 @@ router.route("/ModerateArticles").post((req,res) =>{
     newArticle.save();
 })
 
+// DELETE deletes the article using it's id
 router.route("/ModerateArticles/:id").delete((req,res) => {
     Articles.findByIdAndRemove(req.params.id).exec()
+})
+
+// GET gets analyst articles
+router.route("/AnalyseArticles").get((req, res) =>{
+    ModerateArticle.find().then(foundArticles => res.json(foundArticles))
 })
 
 module.exports = router;

@@ -19,7 +19,7 @@ const AnalyseArticles = () => {
     var check = useRef(false);    
 
     useEffect(() => {
-        fetch("https://speedgroup3-53.herokuapp.com//AnalyseArticles")
+        fetch("https://speedgroup3-53.herokuapp.com/AnalyseArticles")
         .then(res => res.json())
         .then(jsonRes => setArticles(jsonRes))
         .catch(function(error){

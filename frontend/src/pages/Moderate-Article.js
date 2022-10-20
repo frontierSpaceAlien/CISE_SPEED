@@ -5,6 +5,7 @@ import tablecolumns from "../components/tablecolumnsModerator.js";
 import Dropdown from "../components/Dropdown.js";
 
 const ModerateArticles = () => {
+    const axios = require('axios').default;
     const [articles, setArticles] = useState([{
         title: "",
         authors: "",
@@ -13,32 +14,44 @@ const ModerateArticles = () => {
         doi: "",
     }])
 
-    const [selectedArticle, setSelectedArticles] = useState([{
-        title: "",
-        authors: "",
-        source: "",
-        pubyear: "",
-        doi: "",
-    }])
-
-    const [state, setState] = useState([])
-
     const [selectedRows, setSelectedRows] = useState([]);
 
-    const handleClick = () =>{
-        // console.log(JSON.stringify(selectedRows))
-        setState(JSON.stringify(selectedRows))
-        console.log(state)
-        const savedArticle={
-            title: state.title
+    const handleDenyClick = () =>{
+        const arr = []
+        Object.keys(selectedRows)
+        .forEach(key => 
+            arr.push({
+                name: key, value: selectedRows[key]
+            }))
+
+        axios.delete("http://localhost:5000/ModerateArticles/"+arr[0].value._id)
+    }
+
+    const handleAcceptClick = () =>{
+        const arr = []
+        Object.keys(selectedRows)
+        .forEach(key => 
+            arr.push({
+                name: key, value: selectedRows[key]
+            }))
+        
+        const selectedArticle = {
+            title: arr[0].value.title,
+            authors: arr[0].value.authors,
+            source: arr[0].value.source,
+            pubyear: arr[0].value.pubyear,
+            doi: arr[0].value.doi,
         }
-        console.log(savedArticle)
+
+        axios.post("http://localhost:5000/ModerateArticles", selectedArticle)
+        axios.delete("http://localhost:5000/ModerateArticles/"+arr[0].value._id)
     }
 
     var check = useRef(false);    
 
     useEffect(() => {
-        fetch("https://speedgroup3-53.herokuapp.com/ModerateArticles").then(res => res.json())
+        fetch("https://speedgroup3-53.herokuapp.com/ModerateArticles")
+        .then(res => res.json())
         .then(jsonRes => setArticles(jsonRes))
         .catch(function(error){
             console.log(error)
@@ -62,20 +75,21 @@ const ModerateArticles = () => {
             setSelectedRows={setSelectedRows}
           />
         </Styles>
-        <p>{JSON.stringify(selectedRows)}</p>
             <button 
             type="button" 
             disabled = {check.current}
+            onClick = {handleAcceptClick}
             >
                 Accept
             </button> 
             <button 
             type="button" 
             disabled = {check.current}
-            onClick = {handleClick}
+            onClick = {handleDenyClick}
             >
                 Deny
             </button> 
+            {}
       </div>
     );
 }

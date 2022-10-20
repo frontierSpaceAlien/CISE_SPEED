@@ -24,7 +24,7 @@ const ModerateArticles = () => {
                 name: key, value: selectedRows[key]
             }))
 
-        axios.delete("http://localhost:5000/ModerateArticles/"+arr[0].value._id)
+        axios.delete("https://speedgroup3-53.herokuapp.com/ModerateArticles/"+arr[0].value._id)
     }
 
     const handleAcceptClick = () =>{
@@ -43,8 +43,8 @@ const ModerateArticles = () => {
             doi: arr[0].value.doi,
         }
 
-        axios.post("http://localhost:5000/ModerateArticles", selectedArticle)
-        axios.delete("http://localhost:5000/ModerateArticles/"+arr[0].value._id)
+        axios.post("https://speedgroup3-53.herokuapp.com/ModerateArticles", selectedArticle)
+        axios.delete("https://speedgroup3-53.herokuapp.com/ModerateArticles/"+arr[0].value._id)
     }
 
     var check = useRef(false);    
